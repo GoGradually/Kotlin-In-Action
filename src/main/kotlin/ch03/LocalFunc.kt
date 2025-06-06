@@ -11,10 +11,12 @@ fun saveUser(user: User) {
     validate(user.name, "Name")
     validate(user.address, "Address")
 
+    val (first, second) = 1 to "wa!"
+    println("$first, $second")
     println("user ${user.id} saved")
 }
 
 fun main(){
-    saveUser(User(1, "", ""))
+    saveUser(User(1, "1", "2"))
 }
 

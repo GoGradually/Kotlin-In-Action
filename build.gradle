@@ -19,6 +19,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0"
 }
 
 test {

@@ -1,15 +1,16 @@
 package coroutine
 
 import kotlin.concurrent.thread
+import kotlin.system.measureTimeMillis
 
-class ThreadVer{
-    data class UserID (val nickname: String)
+class ThreadVer {
+    data class UserID(val nickname: String)
 
     data class Credentials(val username: String, val password: String)
 
     data class UserData(val fullName: String, val email: String)
 
-    fun login(credentials: Credentials): UserID{
+    fun login(credentials: Credentials): UserID {
         Thread.sleep(1000)
         return UserID(credentials.username)
     }
@@ -19,22 +20,30 @@ class ThreadVer{
         return UserData("Full Name of ${userID.nickname}", "sample@sample.net")
     }
 
-    fun showData(data: UserData){
+    fun showData(data: UserData) {
         println("User Data: $data")
     }
 
-    fun showUserInfo(credentials: Credentials){
+    fun showUserInfo(credentials: Credentials) {
         val userID = login(credentials)
         val userData = fetchUserData(userID)
         showData(userData)
     }
 
     fun main() {
-        for(i in 1..100000){
-            thread {
-                val credentials = Credentials("user$i", "password$i")
-                showUserInfo(credentials)
+        val millis = measureTimeMillis {
+            for (i in 1..100000) {
+                thread {
+                    val credentials = Credentials("user$i", "password$i")
+                    showUserInfo(credentials)
+                }
             }
         }
+
+        println("Completed in $millis ms")
     }
+}
+fun main() {
+    val app = ThreadVer()
+    app.main()
 }

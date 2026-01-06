@@ -39,11 +39,11 @@ fun main() = runBlocking {
     val semaphore = Semaphore(100000)
 
     val millis = measureTimeMillis {
-        coroutineScope {
+        runBlocking {
             for (i in 1..100_000) {
                 val credentials = Credentials("user$i", "password$i")
 
-                launch(Dispatchers.Default) {
+                launch {
                     semaphore.withPermit {
                         showUserInfo(credentials)
                     }

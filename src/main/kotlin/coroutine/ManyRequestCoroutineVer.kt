@@ -36,17 +36,13 @@ suspend fun showUserInfo(credentials: Credentials) {
 }
 
 fun main() = runBlocking {
-    val semaphore = Semaphore(100000)
-
     val millis = measureTimeMillis {
         runBlocking {
             for (i in 1..100_000) {
                 val credentials = Credentials("user$i", "password$i")
 
                 launch {
-                    semaphore.withPermit {
-                        showUserInfo(credentials)
-                    }
+                    showUserInfo(credentials)
                 }
             }
         }

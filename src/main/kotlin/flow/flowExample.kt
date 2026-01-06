@@ -18,6 +18,8 @@ fun createValuesFlow(): Flow<Int> {
 
 fun main() = runBlocking {
     val flow = createValuesFlow()
+    log("start")
+    delay(2000)
     flow.collect{
         log(it)
     }

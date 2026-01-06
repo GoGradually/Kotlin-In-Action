@@ -35,7 +35,7 @@ suspend fun showUserInfo(credentials: Credentials) {
     showData(userData)
 }
 
-fun main() = runBlocking {
+fun main() {
     val millis = measureTimeMillis {
         runBlocking {
             for (i in 1..100_000) {

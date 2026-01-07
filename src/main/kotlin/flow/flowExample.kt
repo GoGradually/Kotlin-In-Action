@@ -20,4 +20,5 @@ fun main() = runBlocking {
         log(it)
         delay(200)
     }
+    log("end")
 }
